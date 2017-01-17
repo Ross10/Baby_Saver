@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,21 +53,18 @@ public class Register_Activity extends AppCompatActivity {
             editor.putString("Name",fullname.getText().toString());
             editor.putString("email",email.getText().toString());
             editor.commit();
+
+            // create a new folder in the internal storage
+//            File mydir = this.getDir("BabySaver", Context.MODE_PRIVATE); //Creating an internal dir;
+//            if (!mydir.exists())
+//            {
+//                mydir.mkdirs();
+//            }
+
             Toast.makeText(this, "Thanks - your Data has been saved", Toast.LENGTH_LONG).show();
 
 
-
-
-
-
-
-
         }
-
-
-
-
-
 
     }
 
