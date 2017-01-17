@@ -161,8 +161,8 @@ public class Album_Activity extends AppCompatActivity
         try {
             File f=new File(path, "profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-            ImageView img=(ImageView)findViewById(R.id.iv1);
-            img.setImageBitmap(b);
+//            ImageView img=(ImageView)findViewById(R.id.iv1);
+//            img.setImageBitmap(b);
         }
         catch (FileNotFoundException e)
         {

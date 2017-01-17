@@ -73,23 +73,6 @@
         android:layout_alignStart="@+id/passwordEditText" />
 
     <TextView
-        android:text="התחבר"
-        android:textSize="22dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/connect_TextView"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:textStyle="italic"
-        android:layout_alignBaseline="@+id/forgot_passord_textView"
-        android:layout_alignBottom="@+id/forgot_passord_textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="connect"
-
-        />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/register_textView"
@@ -97,23 +80,23 @@
         android:onClick="register"
         android:textStyle="italic"
         android:textSize="22dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="49dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/connect_TextView"
-        android:layout_alignEnd="@+id/connect_TextView" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="התחבר"
+        android:textSize="22dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/forgot_passord_textView"
-        android:text="שכחתי סיסמא"
-        android:onClick="forgotPassword"
-        android:textSize="22dp"
+        android:id="@+id/connect_TextView"
         android:textStyle="italic"
-        android:layout_marginBottom="80dp"
+        android:onClick="connect"
+
         android:layout_above="@+id/register_textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/register_textView"
+        android:layout_alignEnd="@+id/register_textView"
+        android:layout_marginBottom="53dp" />
 
 
 </RelativeLayout>
