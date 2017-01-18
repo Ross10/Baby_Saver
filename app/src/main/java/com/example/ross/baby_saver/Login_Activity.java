@@ -36,6 +36,8 @@ public class Login_Activity extends AppCompatActivity {
             password = preferences.getString("Password","there is no such a password");
             if(emailEditText.getText().toString().equals(email) && passwordEditText.getText().toString().equals(password)){
                 Toast.makeText(this, "WELCOMMMMM", Toast.LENGTH_LONG).show();
+                Intent homePage = new Intent(this,Home_Page_Activity.class);
+                startActivity(homePage);
             }
 
 
