@@ -1,25 +1,28 @@
 package com.example.ross.baby_saver;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Map;
 
 public class Register_Activity extends AppCompatActivity {
     private EditText fullname,passwd,email,clue,recPasswd;
     private Button registerBtn;
+    private boolean isReg = false;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
 
@@ -33,7 +36,7 @@ public class Register_Activity extends AppCompatActivity {
         passwd = (EditText)findViewById(R.id.passwdEditText);
         recPasswd = (EditText)findViewById(R.id.confirmPasswdEditText);
         email = (EditText)findViewById(R.id.emailText);
-        clue = (EditText)findViewById(R.id.clueEditText);
+
         registerBtn = (Button)findViewById(R.id.registerBtn);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -50,24 +53,23 @@ public class Register_Activity extends AppCompatActivity {
         if(isValid){
 //            String saveUserInput = "Full name : " + fullname.getText().toString() + " email : " + email.getText().toString() + " password : " + passwd.getText().toString() + " hint : " + clue.getText().toString();
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("Name",fullname.getText().toString());
-            editor.putString("email",email.getText().toString());
+            editor.putString("Email",email.getText().toString());
+            editor.putString("Password",passwd.getText().toString());
             editor.commit();
-
-            // create a new folder in the internal storage
-//            File mydir = this.getDir("BabySaver", Context.MODE_PRIVATE); //Creating an internal dir;
-//            if (!mydir.exists())
-//            {
-//                mydir.mkdirs();
-//            }
-
             Toast.makeText(this, "Thanks - your Data has been saved", Toast.LENGTH_LONG).show();
+
+            sendToLogin();
 
 
         }
 
     }
 
+    private void sendToLogin() {
+        Intent login = new Intent(this,Login_Activity.class);
+        startActivity(login);
+
+    }
 
 
     private boolean checkValidation(){
@@ -89,12 +91,6 @@ public class Register_Activity extends AppCompatActivity {
         }
 
 
-        if(clue.getText().toString().equals("")){
-            clue.setError("השדה הזה הינו חובה");
-            counter++;
-        }
-
-
         if(email.getText().toString().equals("")){
             email.setError("השדה הזה הינו חובה");
             counter++;
@@ -112,4 +108,5 @@ public class Register_Activity extends AppCompatActivity {
 
         return true;
     }
+
 }
