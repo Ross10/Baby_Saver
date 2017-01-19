@@ -41,13 +41,14 @@ public class Home_Page_Activity extends AppCompatActivity implements View.OnClic
         switch(v.getId()){
 
             case R.id.toDoIB:
+                homeScreen = new Intent(this,To_Do_list_Activity.class);
                 break;
 
             case R.id.calenderIB:
                 break;
 
             case R.id.galleryIB:
-                homeScreen = new Intent(this,Album_Activity.class);
+
                 break;
 
             case R.id.gpsIB:
