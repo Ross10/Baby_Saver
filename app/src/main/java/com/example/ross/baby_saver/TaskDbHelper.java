@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,5 +98,23 @@ public class TaskDbHelper extends SQLiteOpenHelper {
         values.put(KEY_STATUS, task.getStatus());
         db.update(TABLE_TASKS, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(task.getId())});
+    }
+
+
+    public boolean deleteTask(Task task){
+
+        Log.d("DEBUG",task.getTaskName());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        try{
+            db.delete(TABLE_TASKS,"taskName = ?",new String[]{task.getTaskName()});
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+
+
     }
 }

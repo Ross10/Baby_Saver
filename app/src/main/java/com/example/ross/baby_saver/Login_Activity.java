@@ -2,6 +2,7 @@ package com.example.ross.baby_saver;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,14 @@ public class Login_Activity extends AppCompatActivity {
                 Toast.makeText(this, "WELCOMMMMM", Toast.LENGTH_LONG).show();
                 Intent homePage = new Intent(this,Home_Page_Activity.class);
                 startActivity(homePage);
+            }else{
+                AlertDialog.Builder error = new AlertDialog.Builder(this);
+                error.setMessage("שם המשתמש או הסיסמא אינם נכונים");
+                error.setTitle("שגיאת כניסה למערכת");
+                error.setPositiveButton("אישור",null);
+                error.setCancelable(true);
+                error.create().show();
+
             }
 
 

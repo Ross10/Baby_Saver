@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -20,9 +21,10 @@ import java.util.List;
 import static android.R.id.list;
 
 public class To_Do_list_Activity extends AppCompatActivity {
-    protected TaskDbHelper db;
-    List<Task> list;
-    MyAdapter adapt;
+    private  TaskDbHelper db;
+    private List<Task> list;
+    private MyAdapter adapt;
+    private ListView listTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,35 @@ public class To_Do_list_Activity extends AppCompatActivity {
         db = new TaskDbHelper(this);
         list = db.getAllTasks();
         adapt = new MyAdapter(this, R.layout.list_inner_view, list);
-        ListView listTask = (ListView) findViewById(R.id.listView1);
+        listTask = (ListView) findViewById(R.id.listView1);
         listTask.setAdapter(adapt);
+
+        listTask.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+
+                Toast.makeText(To_Do_list_Activity.this, "clicked long", Toast.LENGTH_LONG).show();
+                Toast.makeText(To_Do_list_Activity.this, list.get(pos).getTaskName(), Toast.LENGTH_SHORT).show();
+                db.deleteTask(list.get(pos));
+                adapt.remove(list.get(pos));
+                adapt.notifyDataSetChanged();
+
+                return true;
+            }
+        });
+
+
+
     }
+
+
+
+
+
+
+
     public void addTaskNow(View v) {
         EditText taskAdd = (EditText) findViewById(R.id.toDoListEditText);
         String taskAddText = taskAdd.getText().toString();
@@ -42,7 +70,6 @@ public class To_Do_list_Activity extends AppCompatActivity {
         } else {
             Task task = new Task(taskAddText, 0);
             db.addTask(task);
-            Log.d("tasker", "data added");
             taskAdd.setText("");
             adapt.add(task);
             adapt.notifyDataSetChanged();
@@ -50,8 +77,8 @@ public class To_Do_list_Activity extends AppCompatActivity {
     }
 
     private class MyAdapter extends ArrayAdapter<Task> {
-        Context context;
-        List<Task> taskList = new ArrayList<Task>();
+        private Context context;
+        private List<Task> taskList = new ArrayList<Task>();
         int layoutResourceId;
         public MyAdapter(Context context, int layoutResourceId,
                          List<Task> objects) {
@@ -94,5 +121,8 @@ public class To_Do_list_Activity extends AppCompatActivity {
             Log.d("listener", String.valueOf(current.getId()));
             return convertView;
         }
+
+
+
     }
 }
