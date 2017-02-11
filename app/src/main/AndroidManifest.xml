@@ -41,7 +41,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".Home_Page_Activity" />
-        <activity android:name=".To_Do_list_Activity"></activity>
+        <activity android:name=".To_Do_list_Activity" />
+        <activity
+            android:name=".testing"
+            android:label="@string/title_activity_testing"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -48,6 +48,7 @@ public class Home_Page_Activity extends AppCompatActivity implements View.OnClic
                                 break;
 
                             case 3:
+                                homeActivity = new Intent(Home_Page_Activity.this,Album_Activity.class);
                                 break;
 
                             case 4:
