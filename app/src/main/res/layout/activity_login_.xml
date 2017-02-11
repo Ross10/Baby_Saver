@@ -98,5 +98,15 @@
         android:layout_alignEnd="@+id/register_textView"
         android:layout_marginBottom="53dp" />
 
+    <CheckBox
+        android:text="זכור אותי"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_pic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/rememberMw" />
+
 
 </RelativeLayout>

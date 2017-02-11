@@ -3,32 +3,69 @@ package com.example.ross.baby_saver;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 
 public class Home_Page_Activity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton todo,calender,gallery,gps,lockUser,tracking;
+    private GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__page_);
 
-        todo = (ImageButton)findViewById(R.id.toDoIB);
-        calender = (ImageButton)findViewById(R.id.calenderIB);
-        gallery = (ImageButton)findViewById(R.id.galleryIB);
-        gps = (ImageButton)findViewById(R.id.gpsIB);
-        lockUser = (ImageButton)findViewById(R.id.lockUserIB);
-        tracking = (ImageButton)findViewById(R.id.trackingIB);
+//        todo = (ImageButton)findViewById(R.id.toDoIB);
+//        calender = (ImageButton)findViewById(R.id.calenderIB);
+//        gallery = (ImageButton)findViewById(R.id.galleryIB);
+//        gps = (ImageButton)findViewById(R.id.gpsIB);
+//        lockUser = (ImageButton)findViewById(R.id.lockUserIB);
+//        tracking = (ImageButton)findViewById(R.id.trackingIB);
+        gridview = (GridView)findViewById(R.id.gridview);
 
-        todo.setOnClickListener(this);
-        calender.setOnClickListener(this);
-        gallery.setOnClickListener(this);
-        gps.setOnClickListener(this);
-        lockUser.setOnClickListener(this);
-        tracking.setOnClickListener(this);
+                // a potentially  time consuming task
+                gridview.setAdapter(new ImageAdapter(Home_Page_Activity.this));
 
+                gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent homeActivity = null;
+
+                        switch(position){
+
+                            case 0:
+                                break;
+
+                            case 1:
+                                break;
+
+                            case 2:
+                                homeActivity = new Intent(Home_Page_Activity.this,To_Do_list_Activity.class);
+                                break;
+
+                            case 3:
+                                break;
+
+                            case 4:
+                                homeActivity = new Intent(Home_Page_Activity.this,To_Do_list_Activity.class);
+
+                                break;
+
+                            case 5:
+                                break;
+                        }
+
+                        if(homeActivity!=null)
+                            startActivity(homeActivity);
+
+                    }
+
+
+                });
 
 
     }
@@ -36,34 +73,7 @@ public class Home_Page_Activity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Intent homeScreen = null;
 
-        switch(v.getId()){
-
-            case R.id.toDoIB:
-                homeScreen = new Intent(this,To_Do_list_Activity.class);
-                break;
-
-            case R.id.calenderIB:
-                break;
-
-            case R.id.galleryIB:
-
-                break;
-
-            case R.id.gpsIB:
-                break;
-
-            case R.id.lockUserIB:
-                homeScreen = new Intent(this,Login_Activity.class);
-                break;
-
-            case R.id.trackingIB:
-                break;
-
-
-        }
-        startActivity(homeScreen);
-
+//
     }
 }
