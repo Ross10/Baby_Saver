@@ -122,7 +122,8 @@ public class Album_Activity extends AppCompatActivity {
     }
 
 
-    private String saveToInternalStorage(Bitmap bitmapImage) {
+    private String saveToInternalStorage(Bitmap bitmapImage)
+    {
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
         Date currentLocalTime = cal.getTime();
