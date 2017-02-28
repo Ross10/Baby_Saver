@@ -38,9 +38,11 @@ public class Home_Page_Activity extends AppCompatActivity implements View.OnClic
                         switch(position){
 
                             case 0:
+                                homeActivity = new Intent(Home_Page_Activity.this,AndroidCalendarView.class);
                                 break;
 
                             case 1:
+                                homeActivity = new Intent(Home_Page_Activity.this,GpsHandler.class);
                                 break;
 
                             case 2:
@@ -52,11 +54,11 @@ public class Home_Page_Activity extends AppCompatActivity implements View.OnClic
                                 break;
 
                             case 4:
-                                homeActivity = new Intent(Home_Page_Activity.this,To_Do_list_Activity.class);
-
+                                homeActivity = new Intent(Home_Page_Activity.this,TrackingActivity.class);
                                 break;
 
                             case 5:
+                                homeActivity = new Intent(Home_Page_Activity.this,Login_Activity.class);
                                 break;
                         }
 

@@ -20,9 +20,8 @@ import java.io.OutputStreamWriter;
 import java.util.Map;
 
 public class Register_Activity extends AppCompatActivity {
-    private EditText fullname,passwd,email,clue,recPasswd;
+    private EditText fullname,passwd,email,recPasswd,nannyAddress,phoneNum,childName;
     private Button registerBtn;
-    private boolean isReg = false;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
 
@@ -36,6 +35,9 @@ public class Register_Activity extends AppCompatActivity {
         passwd = (EditText)findViewById(R.id.passwdEditText);
         recPasswd = (EditText)findViewById(R.id.confirmPasswdEditText);
         email = (EditText)findViewById(R.id.emailText);
+        nannyAddress = (EditText)findViewById(R.id.nannyAddressEditText);
+        phoneNum = (EditText)findViewById(R.id.phoneNum);
+        childName = (EditText)findViewById(R.id.ChildName);
 
         registerBtn = (Button)findViewById(R.id.registerBtn);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -47,16 +49,19 @@ public class Register_Activity extends AppCompatActivity {
 
     public void registerPressed(View v){
 
-
        boolean isValid =  checkValidation();
 
         if(isValid){
-//            String saveUserInput = "Full name : " + fullname.getText().toString() + " email : " + email.getText().toString() + " password : " + passwd.getText().toString() + " hint : " + clue.getText().toString();
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("Email",email.getText().toString());
             editor.putString("Password",passwd.getText().toString());
+            editor.putString("nannyAddress",nannyAddress.getText().toString());
+            editor.putString("childName",childName.getText().toString());
+            editor.putString("phoneNum",phoneNum.getText().toString());
+            editor.putString("fullname",fullname.getText().toString());
+
             editor.commit();
-            Toast.makeText(this, "Thanks - your Data has been saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, " תודה " + fullname.getText().toString() +" - המידע שלך נשמר בהצלחה ", Toast.LENGTH_LONG).show();
 
             sendToLogin();
 
@@ -102,11 +107,52 @@ public class Register_Activity extends AppCompatActivity {
             counter++;
         }
 
+        if(nannyAddress.getText().toString().equals("")){
+            nannyAddress.setError("השדה הזה הינו חובה. אנו ממליצים להדליק GPS ולרשום כתובת מדוייקת");
+            counter++;
+        }
+
+        if(childName.getText().toString().equals("")){
+            childName.setError("השדה הזה הינו חובה. ");
+            counter++;
+        }
+
+        if(!isNumeric(phoneNum.getText().toString()) || phoneNum.getText().toString().equals("")){
+            if( phoneNum.getText().toString().equals("")){
+                phoneNum.setError("השדה הזה הינו חובה. ");
+            }
+            else{
+                phoneNum.setError("אנא הכנס מספר טלפון חוקי");
+            }
+
+            counter++;
+        }
+
+
+
         if(counter>0){
             return false;
         }
 
         return true;
     }
+
+
+
+    public boolean isNumeric(String str)
+    {
+        try
+        {
+            int d = Integer.parseInt(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
+
 
 }

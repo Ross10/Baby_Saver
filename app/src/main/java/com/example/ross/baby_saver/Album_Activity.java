@@ -19,9 +19,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
+//import com.google.android.gms.appindexing.Action;
+//import com.google.android.gms.appindexing.AppIndex;
+//import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.File;
@@ -49,6 +49,7 @@ public class Album_Activity extends AppCompatActivity {
     private File directory;
     private GridView gridView;
     private GridViewAdapter gridAdapter;
+    private GridViewAdapter gridAdapter2;
     private String path;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -109,7 +110,11 @@ public class Album_Activity extends AppCompatActivity {
 
             saveToInternalStorage(imageBitmap);
             String path = directory.getPath();
+            gridAdapter2 = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+            gridView.setAdapter(gridAdapter2);
+            gridAdapter2.notifyDataSetChanged();
             gridAdapter.notifyDataSetChanged();
+
 
 
 
@@ -122,7 +127,8 @@ public class Album_Activity extends AppCompatActivity {
     }
 
 
-    private String saveToInternalStorage(Bitmap bitmapImage) {
+    private String saveToInternalStorage(Bitmap bitmapImage)
+    {
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
         Date currentLocalTime = cal.getTime();
@@ -190,6 +196,3 @@ public class Album_Activity extends AppCompatActivity {
 
 
 }
-
-
-

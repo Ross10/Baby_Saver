@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,11 +24,11 @@ public class TaskDbHelper extends SQLiteOpenHelper {
 
     // Database Name
     private static final String TABLE_TASKS = "tasks";
-
+    private To_Do_list_Activity.MyAdapter adapt;
     // tasks Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_TASKNAME = "taskName";
-    private static final String KEY_STATUS = "status";
+
 
     public TaskDbHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -36,8 +39,7 @@ public class TaskDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_TASKS + " ( "
         + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-        + KEY_TASKNAME+ " TEXT, "
-        + KEY_STATUS + " INTEGER )";
+        + KEY_TASKNAME+ " TEXT )";
         db.execSQL(sql);
     }
 
@@ -59,8 +61,6 @@ public class TaskDbHelper extends SQLiteOpenHelper {
         ContentValues values  = new ContentValues();
         // task name
         values.put(KEY_TASKNAME,task.getTaskName());
-        // status of task- can be 0 for not done and 1 for done
-        values.put(KEY_STATUS,task.getStatus());
         // Inserting Row
         db.insert(TABLE_TASKS,null,values);
         // Closing database connection
@@ -90,14 +90,17 @@ public class TaskDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public void updateTask(Task task) {
+
+    public void updateTask(Task task, int t) {
 // updating row
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_TASKNAME, task.getTaskName());
-        values.put(KEY_STATUS, task.getStatus());
-        db.update(TABLE_TASKS, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(task.getId())});
+        db.update(TABLE_TASKS, values, KEY_ID + " = " +t ,null);
+
+
+
     }
 
 

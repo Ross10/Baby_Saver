@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class Login_Activity extends AppCompatActivity {
 
+    private String fullname;
     private String email;
     private String password;
     private EditText emailEditText;
@@ -35,8 +36,10 @@ public class Login_Activity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MyPrefs",MODE_PRIVATE);
             email  = preferences.getString("Email","there is not such user");
             password = preferences.getString("Password","there is no such a password");
+            fullname = preferences.getString("fullname","אנונימי");
+
             if(emailEditText.getText().toString().equals(email) && passwordEditText.getText().toString().equals(password)){
-                Toast.makeText(this, "WELCOMMMMM", Toast.LENGTH_LONG).show();
+                Toast.makeText(this," ברוך הבא " +  fullname, Toast.LENGTH_LONG).show();
                 Intent homePage = new Intent(this,Home_Page_Activity.class);
                 startActivity(homePage);
             }else{
